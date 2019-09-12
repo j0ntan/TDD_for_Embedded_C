@@ -39,9 +39,16 @@ target_include_directories(unity_fixture PUBLIC
         ${UNITY_FIXTURE_INCLUDE})
 target_link_libraries(unity_fixture PUBLIC unity)
 
+# Application code
+add_library(LedDriver STATIC src/LedDriver/LedDriver.c)
+target_include_directories(LedDriver PUBLIC include/LedDriver)
+
 add_executable(AllTests
         unity/AllTests.c
         unity/LedDriver/LedDriverTestRunner.c
         unity/LedDriver/LedDriverTest.c
         )
-target_link_libraries(AllTests PRIVATE unity_fixture)
+target_link_libraries(AllTests PRIVATE
+        LedDriver
+        unity_fixture
+        )
