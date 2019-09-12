@@ -26,3 +26,22 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/cpputest-src
 add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/unity-src
         ${CMAKE_CURRENT_BINARY_DIR}/unity-build
         EXCLUDE_FROM_ALL)
+
+# Unity headers
+set(UNITY_SRC ${CMAKE_BINARY_DIR}/unity-src)
+set(UNITY_INCLUDE ${UNITY_SRC}/src)
+set(UNITY_FIXTURE_INCLUDE ${UNITY_SRC}/extras/fixture/src)
+
+# Add Unity Fixture library
+add_library(unity_fixture STATIC ${UNITY_FIXTURE_INCLUDE}/unity_fixture.c)
+target_include_directories(unity_fixture PUBLIC
+        ${UNITY_INCLUDE}
+        ${UNITY_FIXTURE_INCLUDE})
+target_link_libraries(unity_fixture PUBLIC unity)
+
+add_executable(AllTests
+        unity/AllTests.c
+        unity/LedDriver/LedDriverTestRunner.c
+        unity/LedDriver/LedDriverTest.c
+        )
+target_link_libraries(AllTests PRIVATE unity_fixture)
