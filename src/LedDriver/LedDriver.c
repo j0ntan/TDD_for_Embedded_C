@@ -1,5 +1,6 @@
 #include "LedDriver.h"
 #include "RuntimeError.h"
+#include "BOOL.h"
 
 enum {ALL_LEDS_ON = ~0, ALL_LEDS_OFF = ~ALL_LEDS_ON};
 
@@ -13,7 +14,7 @@ static void updateHardware(void)
     *ledsAddress = ledsImage;
 }
 
-static int IsLedOutOfBounds(int ledNumber)
+static BOOL IsLedOutOfBounds(int ledNumber)
 {
     return (ledNumber < FIRST_LED) || (ledNumber > LAST_LED);
 }
