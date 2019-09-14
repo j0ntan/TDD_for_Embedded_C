@@ -41,14 +41,23 @@ target_link_libraries(unity_fixture PUBLIC unity)
 
 # Application code
 add_library(LedDriver STATIC src/LedDriver/LedDriver.c)
-target_include_directories(LedDriver PUBLIC include/LedDriver)
+target_include_directories(LedDriver PUBLIC
+        include/LedDriver
+        include/util
+        )
+
+# Testing code
+add_library(RuntimeErrorStub STATIC mocks mocks/RuntimeErrorStub.c)
+target_include_directories(RuntimeErrorStub PUBLIC mocks)
 
 add_executable(AllTests
         unity/AllTests.c
         unity/LedDriver/LedDriverTestRunner.c
         unity/LedDriver/LedDriverTest.c
         )
+target_include_directories(AllTests PRIVATE mocks)
 target_link_libraries(AllTests PRIVATE
         LedDriver
         unity_fixture
+        RuntimeErrorStub
         )
