@@ -97,3 +97,8 @@ TEST(LedDriver, OutOfBoundsProducesRuntimeError)
     TEST_ASSERT_EQUAL_STRING("LED Driver: out-of-bounds LED",
            RuntimeErrorStub_GetLastError());
 }
+
+IGNORE_TEST(LedDriver, OutOfBoundsToDo)
+{
+    /* TODO: what should we do during runtime? */
+}
