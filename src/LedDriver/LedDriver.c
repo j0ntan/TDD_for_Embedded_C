@@ -1,6 +1,5 @@
 #include "LedDriver.h"
 #include "RuntimeError.h"
-#include "BOOL.h"
 
 enum {ALL_LEDS_ON = ~0, ALL_LEDS_OFF = ~ALL_LEDS_ON};
 
@@ -66,4 +65,9 @@ void LedDriver_TurnAllOn(void)
 {
     ledsImage = ALL_LEDS_ON;
     updateHardware();
+}
+
+BOOL LedDriver_IsOn(int ledNumber)
+{
+    return ledsImage & (convertLedNumberToBit(ledNumber));
 }
