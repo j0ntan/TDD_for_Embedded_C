@@ -77,5 +77,8 @@ BOOL LedDriver_IsOn(int ledNumber)
 
 BOOL LedDriver_IsOff(int ledNumber)
 {
+    if (IsLedOutOfBounds(ledNumber))
+      return TRUE;
+
     return !LedDriver_IsOn(ledNumber);
 }
