@@ -28,16 +28,18 @@ add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/unity-src
         EXCLUDE_FROM_ALL)
 
 # Unity headers
-set(UNITY_SRC ${CMAKE_BINARY_DIR}/unity-src)
-set(UNITY_INCLUDE ${UNITY_SRC}/src)
-set(UNITY_FIXTURE_INCLUDE ${UNITY_SRC}/extras/fixture/src)
+set(UNITY_EXTRAS_INCLUDE
+        ${CMAKE_BINARY_DIR}/unity-src/extras/fixture/src
+        ${CMAKE_BINARY_DIR}/unity-src/extras/memory/src
+        )
 
-# Add Unity Fixture library
-add_library(unity_fixture STATIC ${UNITY_FIXTURE_INCLUDE}/unity_fixture.c)
-target_include_directories(unity_fixture PUBLIC
-        ${UNITY_INCLUDE}
-        ${UNITY_FIXTURE_INCLUDE})
-target_link_libraries(unity_fixture PUBLIC unity)
+# Add Unity Extras library
+add_library(unity_extras STATIC
+        ${CMAKE_BINARY_DIR}/unity-src/extras/fixture/src/unity_fixture.c
+        ${CMAKE_BINARY_DIR}/unity-src/extras/memory/src/unity_memory.c
+        )
+target_include_directories(unity_extras PUBLIC ${UNITY_EXTRAS_INCLUDE})
+target_link_libraries(unity_extras PUBLIC unity)
 
 # Application code
 add_library(LedDriver STATIC src/LedDriver/LedDriver.c)
@@ -47,7 +49,7 @@ target_include_directories(LedDriver PUBLIC
         )
 
 # Testing code
-add_library(RuntimeErrorStub STATIC mocks mocks/RuntimeErrorStub.c)
+add_library(RuntimeErrorStub STATIC mocks/RuntimeErrorStub.c)
 target_include_directories(RuntimeErrorStub PUBLIC mocks)
 
 add_executable(AllTests
@@ -58,6 +60,7 @@ add_executable(AllTests
 target_include_directories(AllTests PRIVATE mocks)
 target_link_libraries(AllTests PRIVATE
         LedDriver
-        unity_fixture
         RuntimeErrorStub
+        unity_extras
+        unity
         )
