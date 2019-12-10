@@ -2,6 +2,7 @@
 
 extern "C"
 {
+#include "LightControllerSpy.h"
 }
 
 TEST_GROUP(LightScheduler)
