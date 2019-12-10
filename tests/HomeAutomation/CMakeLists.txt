@@ -1,0 +1,2 @@
+add_library(LightSchedulerTest INTERFACE)
+target_link_libraries(LightSchedulerTest INTERFACE CppUTest)

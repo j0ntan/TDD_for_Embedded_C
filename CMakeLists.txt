@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
-project(TDD_for_Embedded_C C)
+project(TDD_for_Embedded_C C CXX)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 11)
 
 # Download and unpack test frameworks at configure time
 configure_file(CMakeLists.txt.in test-frameworks-download/CMakeLists.txt)
@@ -41,3 +42,6 @@ add_subdirectory(mocks)
 
 # Testing code (using Unity framework)
 add_subdirectory(unity)
+
+# Testing code (using CppUTest framework)
+add_subdirectory(tests)

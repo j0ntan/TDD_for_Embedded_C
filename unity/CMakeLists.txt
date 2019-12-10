@@ -1,5 +1,5 @@
 # LedDriver tests
 add_subdirectory(LedDriver)
 
-add_executable(AllTests AllTests.c)
-target_link_libraries(AllTests LedDriverTests)
+add_executable(AllTestsUnity AllTests.c)
+target_link_libraries(AllTestsUnity LedDriverTests)
