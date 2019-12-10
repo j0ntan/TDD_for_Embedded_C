@@ -1,0 +1,2 @@
+add_library(LedDriverTests LedDriverTest.c LedDriverTestRunner.c)
+target_link_libraries(LedDriverTests LedDriver RuntimeErrorStub unity_extras)
