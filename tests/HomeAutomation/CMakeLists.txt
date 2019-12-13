@@ -15,5 +15,10 @@ target_link_libraries(LightSchedulerTest INTERFACE
     CppUTest
     )
 
+add_library(FakeTimeService INTERFACE)
+target_include_directories(FakeTimeService INTERFACE
+    ${CMAKE_SOURCE_DIR}/include/HomeAutomation
+    )
+
 add_library(FakeTimeServiceTest INTERFACE)
-target_link_libraries(FakeTimeServiceTest INTERFACE CppUTest)
+target_link_libraries(FakeTimeServiceTest INTERFACE FakeTimeService CppUTest)
