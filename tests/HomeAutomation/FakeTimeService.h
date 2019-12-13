@@ -5,4 +5,7 @@
 
 enum {TIME_UNKNOWN = -1};
 
+void FakeTimeService_SetMinute(int);
+void FakeTimeService_SetDay(int);
+
 #endif /* FakeTimeService_H */
