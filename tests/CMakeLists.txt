@@ -14,13 +14,21 @@ add_executable(test_LightControllerSpyTest
     )
 target_link_libraries(test_LightControllerSpyTest LightControllerSpyTest)
 
+add_executable(test_FakeTimeServiceTest
+    AllTests.cpp
+    HomeAutomation/FakeTimeServiceTest.cpp
+    )
+target_link_libraries(test_FakeTimeServiceTest FakeTimeServiceTest)
+
 add_executable(AllTestsCppUTests
     AllTests.cpp
     HomeAutomation/LightControllerSpy.c
     HomeAutomation/LightControllerSpyTest.cpp
     HomeAutomation/LightSchedulerTest.cpp
+    HomeAutomation/FakeTimeServiceTest.cpp
     )
 target_link_libraries(AllTestsCppUTests
     LightControllerSpyTest
     LightSchedulerTest
+    FakeTimeServiceTest
     )

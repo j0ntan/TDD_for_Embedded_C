@@ -14,3 +14,6 @@ target_link_libraries(LightSchedulerTest INTERFACE
     LightControllerSpy
     CppUTest
     )
+
+add_library(FakeTimeServiceTest INTERFACE)
+target_link_libraries(FakeTimeServiceTest INTERFACE CppUTest)
