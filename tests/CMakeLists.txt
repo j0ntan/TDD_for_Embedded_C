@@ -16,6 +16,7 @@ target_link_libraries(test_LightControllerSpyTest LightControllerSpyTest)
 
 add_executable(test_FakeTimeServiceTest
     AllTests.cpp
+    HomeAutomation/FakeTimeService.c
     HomeAutomation/FakeTimeServiceTest.cpp
     )
 target_link_libraries(test_FakeTimeServiceTest FakeTimeServiceTest)
@@ -25,6 +26,7 @@ add_executable(AllTestsCppUTests
     HomeAutomation/LightControllerSpy.c
     HomeAutomation/LightControllerSpyTest.cpp
     HomeAutomation/LightSchedulerTest.cpp
+    HomeAutomation/FakeTimeService.c
     HomeAutomation/FakeTimeServiceTest.cpp
     )
 target_link_libraries(AllTestsCppUTests

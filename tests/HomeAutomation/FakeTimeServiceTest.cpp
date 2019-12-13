@@ -9,9 +9,11 @@ TEST_GROUP(FakeTimeService)
 {
     void setup()
     {
+        TimeService_Create();
     }
     void destroy()
     {
+        TimeService_Destroy();
     }
 };
 
