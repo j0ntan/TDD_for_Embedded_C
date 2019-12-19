@@ -12,15 +12,15 @@ TEST_GROUP(LightScheduler)
     void setup()
     {
         LightController_Create();
+        LightScheduler_Create();
     }
     void teardown()
     {
         LightController_Destroy();
+        LightScheduler_Destroy();
     }
 };
 
-/*
-// too big for first test... defer to simpler tests for now
 TEST(LightScheduler, ScheduleOnEverydayNotTimeYet)
 {
     LightScheduler_ScheduleTurnOn(3, EVERYDAY, 1200);
@@ -32,7 +32,6 @@ TEST(LightScheduler, ScheduleOnEverydayNotTimeYet)
     LONGS_EQUAL(LIGHT_ID_UNKNOWN, LightControllerSpy_GetLastId());
     LONGS_EQUAL(LIGHT_STATE_UNKNOWN, LightControllerSpy_GetLastState());
 }
-*/
 
 TEST(LightScheduler, NoChangeToLightsDuringInitialization)
 {
