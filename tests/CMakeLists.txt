@@ -4,8 +4,9 @@ add_executable(test_LightSchedulerTest
     AllTests.cpp
     HomeAutomation/LightControllerSpy.c
     HomeAutomation/LightSchedulerTest.cpp
+    HomeAutomation/FakeTimeService.c
     )
-target_link_libraries(test_LightSchedulerTest LightSchedulerTest)
+target_link_libraries(test_LightSchedulerTest LightSchedulerTest LightScheduler)
 
 add_executable(test_LightControllerSpyTest
     AllTests.cpp
