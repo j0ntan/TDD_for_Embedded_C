@@ -34,4 +34,5 @@ target_link_libraries(AllTestsCppUTests
     LightControllerSpyTest
     LightSchedulerTest
     FakeTimeServiceTest
+    LightScheduler
     )
