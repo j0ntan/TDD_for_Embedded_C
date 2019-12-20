@@ -24,7 +24,7 @@ TEST_GROUP(LightScheduler)
 TEST(LightScheduler, ScheduleOnEverydayNotTimeYet)
 {
     LightScheduler_ScheduleTurnOn(3, EVERYDAY, 1200);
-    FakeTimeService_SetDay(Monday);
+    FakeTimeService_SetDay(MONDAY);
     FakeTimeService_SetMinute(1199);
 
     LightScheduler_Wakeup();
