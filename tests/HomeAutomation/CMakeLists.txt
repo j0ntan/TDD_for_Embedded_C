@@ -1,8 +1,15 @@
+# Spies & Fakes
 add_library(LightControllerSpy INTERFACE)
 target_include_directories(LightControllerSpy INTERFACE
-    ${CMAKE_SOURCE_DIR}/include/HomeAutomation
+    ${INCLUDE_DIR}/HomeAutomation
     )
 
+add_library(FakeTimeService INTERFACE)
+target_include_directories(FakeTimeService INTERFACE
+    ${INCLUDE_DIR}/HomeAutomation
+    )
+
+# Tests
 add_library(LightControllerSpyTest INTERFACE)
 target_link_libraries(LightControllerSpyTest INTERFACE
     LightControllerSpy
@@ -13,11 +20,6 @@ add_library(LightSchedulerTest INTERFACE)
 target_link_libraries(LightSchedulerTest INTERFACE
     LightControllerSpy
     CppUTest
-    )
-
-add_library(FakeTimeService INTERFACE)
-target_include_directories(FakeTimeService INTERFACE
-    ${CMAKE_SOURCE_DIR}/include/HomeAutomation
     )
 
 add_library(FakeTimeServiceTest INTERFACE)

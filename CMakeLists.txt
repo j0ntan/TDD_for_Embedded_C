@@ -34,6 +34,8 @@ target_include_directories(unity_extras PUBLIC
         )
 target_link_libraries(unity_extras PUBLIC unity)
 
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+
 # Application code
 add_subdirectory(src)
 
