@@ -60,7 +60,7 @@ static void processEventDueNow(Time * time, ScheduledLightEvent * lightEvent)
         return;
     if (reactionDay != EVERYDAY && reactionDay != today &&
        !(reactionDay == WEEKEND && (today == SATURDAY || today == SUNDAY)) &&
-       !(reactionDay == WEEKDAY && today == MONDAY))
+       !(reactionDay == WEEKDAY && today >= MONDAY && today <= FRIDAY))
         return;
     if (lightEvent->minuteOfDay != time->minuteOfDay)
         return;

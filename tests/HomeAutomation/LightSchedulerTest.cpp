@@ -140,6 +140,14 @@ TEST(LightScheduler, ScheduleOnWeekdayAndItsMondayAndItsTime)
     checkLightState(3, LIGHT_ON);
 }
 
+TEST(LightScheduler, ScheduleOnWeekdayAndItsFridayAndItsTime)
+{
+    LightScheduler_ScheduleTurnOn(3, WEEKDAY, 1000);
+    setTimeTo(FRIDAY, 1000);
+    LightScheduler_Wakeup();
+    checkLightState(3, LIGHT_ON);
+}
+
 TEST(LightScheduler, ScheduleOnWeekdayAndItsSaturdayAndItsTime)
 {
     LightScheduler_ScheduleTurnOn(3, WEEKDAY, 1000);
