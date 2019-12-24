@@ -123,3 +123,27 @@ TEST(LightScheduler, ScheduleWeekEndItsMonday)
     LightScheduler_Wakeup();
     checkLightState(LIGHT_ID_UNKNOWN, LIGHT_STATE_UNKNOWN);
 }
+
+TEST(LightScheduler, ScheduleOnWeekdayAndItsSundayAndItsTime)
+{
+    LightScheduler_ScheduleTurnOn(3, WEEKDAY, 100);
+    setTimeTo(SUNDAY, 100);
+    LightScheduler_Wakeup();
+    checkLightState(LIGHT_ID_UNKNOWN, LIGHT_STATE_UNKNOWN);
+}
+
+TEST(LightScheduler, ScheduleOnWeekdayAndItsMondayAndItsTime)
+{
+    LightScheduler_ScheduleTurnOn(3, WEEKDAY, 200);
+    setTimeTo(MONDAY, 200);
+    LightScheduler_Wakeup();
+    checkLightState(3, LIGHT_ON);
+}
+
+TEST(LightScheduler, ScheduleOnWeekdayAndItsSaturdayAndItsTime)
+{
+    LightScheduler_ScheduleTurnOn(3, WEEKDAY, 1000);
+    setTimeTo(SATURDAY, 1000);
+    LightScheduler_Wakeup();
+    checkLightState(LIGHT_ID_UNKNOWN, LIGHT_STATE_UNKNOWN);
+}
