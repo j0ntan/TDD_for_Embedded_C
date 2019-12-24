@@ -7,4 +7,5 @@ target_include_directories(LedDriver PUBLIC
 add_library(LightScheduler STATIC HomeAutomation/LightScheduler.c)
 target_include_directories(LightScheduler PUBLIC
         ${INCLUDE_DIR}/HomeAutomation
+        ${INCLUDE_DIR}/util
         )
