@@ -32,6 +32,26 @@ TEST_GROUP(LightScheduler)
     }
 };
 
+TEST_GROUP(LightSchedulerInitAndCleanup)
+{
+};
+
+TEST(LightSchedulerInitAndCleanup, CreateStartsOneMinuteAlarm)
+{
+    LightScheduler_Create();
+    POINTERS_EQUAL((void *)LightScheduler_Wakeup,
+                   (void *)FakeTimeService_GetAlarmCallback());
+    LONGS_EQUAL(60, FakeTimeService_GetAlarmPeriod());
+    LightScheduler_Destroy();
+}
+
+TEST(LightSchedulerInitAndCleanup, DestroyCancelsOneMinuteAlarm)
+{
+    LightScheduler_Create();
+    LightScheduler_Destroy();
+    POINTERS_EQUAL(NULL, (void *)FakeTimeService_GetAlarmCallback());
+}
+
 TEST(LightScheduler, ScheduleOnEverydayNotTimeYet)
 {
     LightScheduler_ScheduleTurnOn(3, EVERYDAY, 1200);

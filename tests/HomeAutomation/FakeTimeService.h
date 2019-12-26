@@ -8,4 +8,7 @@ enum {TIME_UNKNOWN = -1};
 void FakeTimeService_SetMinute(int);
 void FakeTimeService_SetDay(int);
 
+WakeupCallback FakeTimeService_GetAlarmCallback(void);
+int FakeTimeService_GetAlarmPeriod(void);
+
 #endif /* FakeTimeService_H */
