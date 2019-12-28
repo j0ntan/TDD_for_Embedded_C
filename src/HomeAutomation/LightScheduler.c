@@ -36,6 +36,9 @@ void LightScheduler_Destroy(void)
 
 static int scheduleEvent(int id, Day day, int minuteOfDay, int event)
 {
+    if (id < 0 || id >= MAX_LIGHTS)
+        return LS_ID_IS_OUT_OF_BOUNDS;
+
     for (int i = 0; i < MAX_EVENTS; i++)
     {
         if (scheduledEvents[i].id == UNUSED)
