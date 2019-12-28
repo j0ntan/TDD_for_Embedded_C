@@ -22,8 +22,6 @@ static ScheduledLightEvent scheduledEvents[MAX_EVENTS];
 
 void LightScheduler_Create(void)
 {
-    scheduledEvent.id = UNUSED;
-
     for (int i = 0; i < MAX_EVENTS; i++)
         scheduledEvents[i].id = UNUSED;
 
@@ -38,11 +36,6 @@ void LightScheduler_Destroy(void)
 
 static void scheduleEvent(int id, Day day, int minuteOfDay, int event)
 {
-    scheduledEvent.minuteOfDay = minuteOfDay;
-    scheduledEvent.event = event;
-    scheduledEvent.id = id;
-    scheduledEvent.day = day;
-
     for (int i = 0; i < MAX_EVENTS; i++)
     {
         if (scheduledEvents[i].id == UNUSED)
@@ -107,8 +100,6 @@ void LightScheduler_Wakeup(void)
 {
     Time time;
     TimeService_GetTime(&time);
-
-    processEventDueNow(&time, &scheduledEvent);
 
     for (int i = 0; i < MAX_EVENTS; i++)
     {
