@@ -16,11 +16,16 @@ typedef struct
     int event;
 } ScheduledLightEvent;
 
+#define MAX_EVENTS 128
 static ScheduledLightEvent scheduledEvent;
+static ScheduledLightEvent scheduledEvents[MAX_EVENTS];
 
 void LightScheduler_Create(void)
 {
     scheduledEvent.id = UNUSED;
+
+    for (int i = 0; i < MAX_EVENTS; i++)
+        scheduledEvents[i].id = UNUSED;
 
     TimeService_SetPeriodicAlarmInSeconds(60,
             LightScheduler_Wakeup);
@@ -37,6 +42,18 @@ static void scheduleEvent(int id, Day day, int minuteOfDay, int event)
     scheduledEvent.event = event;
     scheduledEvent.id = id;
     scheduledEvent.day = day;
+
+    for (int i = 0; i < MAX_EVENTS; i++)
+    {
+        if (scheduledEvents[i].id == UNUSED)
+        {
+            scheduledEvents[i].minuteOfDay = minuteOfDay;
+            scheduledEvents[i].event = event;
+            scheduledEvents[i].id = id;
+            scheduledEvents[i].day = day;
+            break;
+        }
+    }
 }
 
 void LightScheduler_ScheduleTurnOn(int id, Day day, int minuteOfDay)
@@ -92,4 +109,9 @@ void LightScheduler_Wakeup(void)
     TimeService_GetTime(&time);
 
     processEventDueNow(&time, &scheduledEvent);
+
+    for (int i = 0; i < MAX_EVENTS; i++)
+    {
+        processEventDueNow(&time, &scheduledEvents[i]);
+    }
 }
